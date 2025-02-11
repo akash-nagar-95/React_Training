@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import './Api.css';
+import "./Api.css";
 
-const App = () => {
+const Api = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -13,7 +13,7 @@ const App = () => {
         throw new Error("Failed to fetch data");
       }
       const data = await response.json();
-      setUsers(data.slice(0, 20)); // Limiting to 20 users for display
+      setUsers(data.slice(0, 20)); // Limiting to 20 users
     } catch (err) {
       setError(err.message);
     } finally {
@@ -26,25 +26,33 @@ const App = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">GitHub Users</h1>
+    <div className="container">
+      <h1>GitHub Users</h1>
+
       {loading && <p>Loading...</p>}
-      {error && <p className="text-red-500">Error: {error}</p>}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        {users.map((user) => (
-          <div key={user.id} className="border p-2 rounded shadow">
-            <img src={user.avatar_url} alt={user.login} className="w-full h-auto rounded-full" />
-            <p className="mt-2 text-sm text-center font-semibold">{user.login}</p>
-            <a href={user.html_url} target="_blank" rel="noopener noreferrer" className="text-blue-500 text-xs text-center block">View Profile</a>
-          </div>
-        ))}
+
+      {error && <p className="error">{error}</p>}
+
+      <div className="user-gallery">
+        {
+          users.map((user) => (
+            <div key={user.id} className="user-card">
+              <img src={user.avatar_url} alt={user.login} className="avatar" />
+              <p className="user-name">{user.login}</p>
+              <a href={user.html_url} target="_blank" className="profile-link">
+                View Profile
+              </a>
+            </div>
+          ))
+        }
       </div>
     </div>
   );
 };
 
-export default App;
+export default Api;
 
 
-    // const response = await fetch('https://api.github.com/users');
-    // const response = await fetch('https://jsonplaceholder.typicode.com/photos');
+
+  // github users fetch karne ke liye         : https://api.github.com/users
+  // random type ke texts fetch karne ke liye : https://jsonplaceholder.typicode.com/photos
