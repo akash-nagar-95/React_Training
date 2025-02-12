@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import './Api.css';
+import "./../components_css/Api.css";
 
 const App = () => {
   const [users, setUsers] = useState([]);
@@ -43,8 +43,7 @@ const App = () => {
   );
 };
 
-export default App;
+export default Api;
 
-
-    // const response = await fetch('https://api.github.com/users');
-    // const response = await fetch('https://jsonplaceholder.typicode.com/photos');
+  // github users fetch karne ke liye         : https://api.github.com/users
+  // random type ke texts fetch karne ke liye : https://jsonplaceholder.typicode.com/photos
