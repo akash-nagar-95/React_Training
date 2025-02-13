@@ -14,14 +14,9 @@ const App = () => {
       {/* <Heading />  */}
       {/* <MainContent  /> */}
       {/* <Footer /> */}
-<<<<<<< Updated upstream
-      <Counter_App />
-      {/* <Api /> */}
-=======
       {/* <Counter_App /> */}
       {/* <Api /> */}
       < ControlledForm />
->>>>>>> Stashed changes
 
 
       
